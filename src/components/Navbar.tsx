@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Menu, X, QrCode } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 interface NavbarProps {
   onOpenRegister: () => void;
@@ -81,14 +81,12 @@ export default function Navbar({ onOpenRegister, onOpenFindPass }: NavbarProps) 
 
           {/* Right Action CTAs */}
           <div className="hidden sm:flex items-center gap-3">
-            <Link
-              href="/scanner"
-              className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-slate-700 bg-slate-50 hover:bg-slate-100 rounded-full border border-slate-200 transition-colors"
-              title="QR Attendance Scanner for Event Day"
+            <button
+              onClick={onOpenFindPass}
+              className="inline-flex items-center justify-center rounded-full bg-slate-50 hover:bg-slate-100 border border-slate-200 font-semibold text-slate-700 transition h-[42px] px-5 text-xs shadow-2xs cursor-pointer"
             >
-              <QrCode className="w-3.5 h-3.5 text-[#1A73E8]" />
-              <span>QR Scanner</span>
-            </Link>
+              Find Pass
+            </button>
 
             <Link
               href="/admin"
@@ -141,13 +139,6 @@ export default function Navbar({ onOpenRegister, onOpenFindPass }: NavbarProps) 
               >
                 Find Your Receipt / Pass
               </button>
-              <Link
-                href="/scanner"
-                onClick={() => setMobileMenuOpen(false)}
-                className="w-full py-2.5 text-center text-xs font-semibold text-[#1a73e8] bg-blue-50 rounded-full"
-              >
-                Attendance QR Scanner
-              </Link>
             </div>
           </div>
         </div>

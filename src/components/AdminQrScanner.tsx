@@ -18,6 +18,7 @@ import {
   ShieldCheck,
   Check,
   X,
+  ArrowRight,
 } from 'lucide-react';
 import { CheckInResult, Registration } from '@/lib/types';
 
@@ -39,8 +40,10 @@ export default function AdminQrScanner({
   const [soundEnabled, setSoundEnabled] = useState(true);
   const [cameraActive, setCameraActive] = useState(false);
   const [cameraError, setCameraError] = useState<string | null>(null);
+  const [isPausedAfterScan, setIsPausedAfterScan] = useState(false);
 
   const scannerRef = useRef<any>(null);
+  const isPausedRef = useRef<boolean>(false);
 
   // Play audio chimes using Web Audio API
   const playSound = (type: 'success' | 'warning' | 'error') => {
@@ -124,6 +127,9 @@ export default function AdminQrScanner({
 
   const startCamera = async () => {
     setCameraError(null);
+    isPausedRef.current = false;
+    setIsPausedAfterScan(false);
+
     try {
       const { Html5Qrcode } = await import('html5-qrcode');
       // Clean up any existing scanner instance
@@ -144,6 +150,18 @@ export default function AdminQrScanner({
           qrbox: { width: 250, height: 250 },
         },
         (decodedText) => {
+          // Prevent multiple continuous scans of the same or subsequent frames
+          if (isPausedRef.current) return;
+          isPausedRef.current = true;
+          setIsPausedAfterScan(true);
+
+          // Pause camera scanning immediately
+          if (scannerRef.current) {
+            try {
+              scannerRef.current.pause(true);
+            } catch (e) {}
+          }
+
           handleVerifyCode(decodedText);
         },
         () => {}
@@ -159,7 +177,25 @@ export default function AdminQrScanner({
     }
   };
 
+  const handleNextScan = async () => {
+    isPausedRef.current = false;
+    setIsPausedAfterScan(false);
+
+    if (scannerRef.current && cameraActive) {
+      try {
+        scannerRef.current.resume();
+      } catch (err) {
+        // Fallback: re-initialize scanner if resume failed
+        await startCamera();
+      }
+    } else if (!cameraActive) {
+      await startCamera();
+    }
+  };
+
   const stopCamera = async () => {
+    isPausedRef.current = false;
+    setIsPausedAfterScan(false);
     if (scannerRef.current) {
       try {
         await scannerRef.current.stop();
@@ -169,6 +205,18 @@ export default function AdminQrScanner({
     }
     setCameraActive(false);
   };
+
+  // Allow pressing Space or Enter to quickly trigger "Next Scan"
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (isPausedAfterScan && (e.code === 'Space' || e.code === 'Enter')) {
+        e.preventDefault();
+        handleNextScan();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isPausedAfterScan]);
 
   useEffect(() => {
     return () => {
@@ -283,7 +331,33 @@ export default function AdminQrScanner({
             <div className="relative min-h-[280px] bg-slate-950 rounded overflow-hidden flex items-center justify-center border border-slate-800">
               <div id="admin-embedded-qr-reader" className="w-full max-w-sm" />
 
-              {!cameraActive && (
+              {/* Pause Overlay with Next Scan Button */}
+              {isPausedAfterScan && (
+                <div className="absolute inset-0 bg-slate-950/85 backdrop-blur-xs flex flex-col items-center justify-center p-6 text-center z-20">
+                  <div className="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mb-2.5 ring-4 ring-emerald-500/10">
+                    <CheckCircle2 className="w-6 h-6" />
+                  </div>
+                  <h4 className="text-sm font-bold text-white mb-1">
+                    Pass Scanned
+                  </h4>
+                  <p className="text-xs text-slate-300 max-w-xs mb-3.5">
+                    Camera paused. Click below or press Spacebar for next attendee.
+                  </p>
+                  <button
+                    onClick={handleNextScan}
+                    className="px-6 py-2.5 rounded-full bg-[#1a73e8] hover:bg-[#1557b0] text-white font-bold text-xs transition-all shadow-md hover:scale-105 active:scale-95 flex items-center gap-2 cursor-pointer"
+                  >
+                    <Camera className="w-4 h-4 text-amber-300" />
+                    <span>Next Scan</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+                  <span className="text-[10px] text-slate-400 mt-2 font-mono">
+                    (Press Spacebar or Enter)
+                  </span>
+                </div>
+              )}
+
+              {!cameraActive && !isPausedAfterScan && (
                 <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center text-slate-400 bg-slate-900/95 z-10">
                   <div className="w-14 h-14 rounded-full bg-slate-800 flex items-center justify-center mb-3">
                     <QrCode className="w-7 h-7 text-slate-400" />
@@ -429,6 +503,20 @@ export default function AdminQrScanner({
                           <span>Ref: {lastResult.participant.id}</span>
                           <span>ID: {lastResult.participant.idNumber}</span>
                         </div>
+                      </div>
+                    )}
+
+                    {/* Next Scan button inside result card */}
+                    {isPausedAfterScan && (
+                      <div className="mt-3 pt-3 border-t border-black/10 flex justify-end">
+                        <button
+                          onClick={handleNextScan}
+                          className="w-full sm:w-auto px-4 py-2 rounded-full bg-slate-900 hover:bg-slate-950 text-white font-bold text-xs transition-all shadow-xs flex items-center justify-center gap-1.5 cursor-pointer"
+                        >
+                          <Camera className="w-3.5 h-3.5 text-amber-400" />
+                          <span>Next Scan</span>
+                          <ArrowRight className="w-3.5 h-3.5" />
+                        </button>
                       </div>
                     )}
                   </div>
