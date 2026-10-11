@@ -59,7 +59,7 @@ export default function YourReceiptSection({ onOpenRegister }: YourReceiptSectio
               Find Your Digital Pass
             </h3>
             <p className="text-xs text-slate-500 mb-6">
-              Enter the email address you registered with, or your registration ID (e.g. <span className="font-mono text-slate-800 font-bold">VB2047-1001</span>).
+              Enter your Registration ID (e.g. <span className="font-mono text-slate-800 font-bold">VB2047-1001</span>), registered email, 10-digit mobile number, or roll/employee ID.
             </p>
 
             <form onSubmit={handleLookup} className="space-y-4">
@@ -72,7 +72,7 @@ export default function YourReceiptSection({ onOpenRegister }: YourReceiptSectio
 
               <div>
                 <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
-                  Email Address or Registration ID
+                  Registration ID, Email, Phone, or Roll No.
                 </label>
                 <div className="relative">
                   <Search className="w-4 h-4 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2" />
@@ -81,7 +81,7 @@ export default function YourReceiptSection({ onOpenRegister }: YourReceiptSectio
                     required
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
-                    placeholder="e.g. name@igntu.ac.in or VB2047-..."
+                    placeholder="e.g. VB2047-1001 or email@domain.com or 9876543210"
                     className="w-full pl-11 pr-4 py-3 rounded-full border border-slate-300 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-[#1a73e8] focus:border-transparent transition-all"
                   />
                 </div>

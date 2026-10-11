@@ -19,14 +19,26 @@ import {
   X,
   AlertCircle,
   FileSpreadsheet,
+  ExternalLink,
 } from 'lucide-react';
 import { Registration, EventConfig } from '@/lib/types';
 import DigitalPassView from '@/components/DigitalPassView';
+import dynamic from 'next/dynamic';
+
+const AdminQrScanner = dynamic(() => import('@/components/AdminQrScanner'), {
+  ssr: false,
+  loading: () => (
+    <div className="bg-white rounded border border-slate-300 p-8 text-center text-slate-500">
+      Loading QR Attendance Station...
+    </div>
+  ),
+});
 
 export default function AdminDashboardPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [pinInput, setPinInput] = useState('');
   const [pinError, setPinError] = useState(false);
+  const [activeTab, setActiveTab] = useState<'roster' | 'scanner' | 'settings'>('roster');
 
   const [registrations, setRegistrations] = useState<Registration[]>([]);
   const [stats, setStats] = useState<any>(null);
@@ -291,17 +303,25 @@ export default function AdminDashboardPage() {
           </div>
 
           <div className="flex items-center gap-2">
-            <Link
-              href="/scanner"
-              className="px-3 py-1.5 rounded bg-blue-50 border border-blue-200 text-blue-900 text-xs font-bold hover:bg-blue-100 transition-colors flex items-center gap-1.5"
+            <button
+              onClick={() => setActiveTab(activeTab === 'scanner' ? 'roster' : 'scanner')}
+              className={`px-3 py-1.5 rounded text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
+                activeTab === 'scanner'
+                  ? 'bg-blue-900 text-white shadow-xs ring-2 ring-blue-300'
+                  : 'bg-blue-50 border border-blue-200 text-blue-900 hover:bg-blue-100'
+              }`}
             >
-              <QrCode className="w-3.5 h-3.5 text-blue-800" />
-              <span>QR Scanner</span>
-            </Link>
+              <QrCode className="w-3.5 h-3.5" />
+              <span>{activeTab === 'scanner' ? 'Close Scanner' : 'QR Scanner Station'}</span>
+            </button>
 
             <button
-              onClick={() => setIsEditingConfig(!isEditingConfig)}
-              className="px-3 py-1.5 rounded bg-slate-100 border border-slate-300 text-slate-700 text-xs font-bold hover:bg-slate-200 transition-colors flex items-center gap-1.5"
+              onClick={() => setActiveTab(activeTab === 'settings' ? 'roster' : 'settings')}
+              className={`px-3 py-1.5 rounded text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer ${
+                activeTab === 'settings'
+                  ? 'bg-slate-900 text-white shadow-xs'
+                  : 'bg-slate-100 border border-slate-300 text-slate-700 hover:bg-slate-200'
+              }`}
             >
               <Settings className="w-3.5 h-3.5 text-slate-600" />
               <span className="hidden sm:inline">Event Settings</span>
@@ -309,7 +329,7 @@ export default function AdminDashboardPage() {
 
             <button
               onClick={handleLogout}
-              className="px-3 py-1.5 rounded bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold transition-colors"
+              className="px-3 py-1.5 rounded bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold transition-colors cursor-pointer"
             >
               Sign Out
             </button>
@@ -322,7 +342,15 @@ export default function AdminDashboardPage() {
         {/* Real Analytics Highlights */}
         {stats && (
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="bg-white rounded p-4 border border-slate-300 shadow-xs">
+            <div
+              onClick={() => setActiveTab('roster')}
+              className={`bg-white rounded p-4 border shadow-xs cursor-pointer transition-all ${
+                activeTab === 'roster'
+                  ? 'border-slate-900 ring-2 ring-slate-900/10'
+                  : 'border-slate-300 hover:border-slate-400'
+              }`}
+              title="Click to view full registrations roster"
+            >
               <div className="flex items-center justify-between text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">
                 <span>Registrations</span>
                 <Users className="w-4 h-4 text-slate-600" />
@@ -335,29 +363,43 @@ export default function AdminDashboardPage() {
               </div>
             </div>
 
-            <div className="bg-white rounded p-4 border border-slate-300 shadow-xs">
+            <div
+              onClick={() => setActiveTab('scanner')}
+              className={`bg-white rounded p-4 border shadow-xs cursor-pointer transition-all group ${
+                activeTab === 'scanner'
+                  ? 'border-blue-900 ring-2 ring-blue-300'
+                  : 'border-slate-300 hover:border-blue-400'
+              }`}
+              title="Click to open QR Attendance Scanner Station"
+            >
               <div className="flex items-center justify-between text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">
                 <span>Checked In</span>
-                <CheckCircle2 className="w-4 h-4 text-emerald-700" />
+                <CheckCircle2 className="w-4 h-4 text-emerald-700 group-hover:scale-110 transition-transform" />
               </div>
               <div className="text-2xl font-bold text-emerald-800 font-mono">
                 {stats.totalCheckedIn}
               </div>
-              <div className="text-[11px] text-slate-500 mt-1">
-                Physical Attendance: {stats.attendanceRate}%
+              <div className="text-[11px] text-slate-500 mt-1 flex items-center justify-between">
+                <span>Physical Attendance: {stats.attendanceRate}%</span>
+                <span className="text-blue-700 font-bold group-hover:underline">Open Scanner →</span>
               </div>
             </div>
 
-            <div className="bg-white rounded p-4 border border-slate-300 shadow-xs">
+            <div
+              onClick={() => setActiveTab('scanner')}
+              className="bg-white rounded p-4 border border-slate-300 shadow-xs cursor-pointer hover:border-blue-400 transition-all group"
+              title="Click to verify pending attendees"
+            >
               <div className="flex items-center justify-between text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">
                 <span>Pending Entry</span>
-                <Clock className="w-4 h-4 text-slate-600" />
+                <Clock className="w-4 h-4 text-slate-600 group-hover:scale-110 transition-transform" />
               </div>
               <div className="text-2xl font-bold text-slate-800 font-mono">
                 {stats.remaining}
               </div>
-              <div className="text-[11px] text-slate-500 mt-1">
-                Awaiting desk verification
+              <div className="text-[11px] text-slate-500 mt-1 flex items-center justify-between">
+                <span>Awaiting desk verification</span>
+                <span className="text-slate-700 font-semibold group-hover:underline">Verify →</span>
               </div>
             </div>
 
@@ -376,8 +418,72 @@ export default function AdminDashboardPage() {
           </div>
         )}
 
+        {/* Navigation Tabs Bar */}
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-300 pb-3">
+          <div className="flex flex-wrap items-center gap-2">
+            <button
+              onClick={() => setActiveTab('roster')}
+              className={`px-4 py-2 rounded text-xs font-bold transition-all flex items-center gap-2 cursor-pointer ${
+                activeTab === 'roster'
+                  ? 'bg-slate-900 text-white shadow-xs'
+                  : 'bg-white border border-slate-300 text-slate-700 hover:bg-slate-50'
+              }`}
+            >
+              <Users className="w-3.5 h-3.5" />
+              <span>Delegates Roster ({registrations.length})</span>
+            </button>
+
+            <button
+              onClick={() => setActiveTab('scanner')}
+              className={`px-4 py-2 rounded text-xs font-bold transition-all flex items-center gap-2 cursor-pointer ${
+                activeTab === 'scanner'
+                  ? 'bg-blue-900 text-white shadow-xs ring-2 ring-blue-300'
+                  : 'bg-white border border-slate-300 text-blue-900 hover:bg-blue-50/50'
+              }`}
+            >
+              <QrCode className="w-3.5 h-3.5 text-amber-500" />
+              <span>QR Attendance Scanner Station</span>
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            </button>
+
+            <button
+              onClick={() => setActiveTab('settings')}
+              className={`px-4 py-2 rounded text-xs font-bold transition-all flex items-center gap-2 cursor-pointer ${
+                activeTab === 'settings'
+                  ? 'bg-slate-900 text-white shadow-xs'
+                  : 'bg-white border border-slate-300 text-slate-700 hover:bg-slate-50'
+              }`}
+            >
+              <Settings className="w-3.5 h-3.5" />
+              <span>Event Settings</span>
+            </button>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <Link
+              href="/scanner"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs text-slate-600 hover:text-blue-700 flex items-center gap-1 font-medium hover:underline py-1"
+              title="Open full-screen kiosk in a separate browser window"
+            >
+              <span>Dedicated Kiosk Window</span>
+              <ExternalLink className="w-3 h-3" />
+            </Link>
+          </div>
+        </div>
+
+        {/* Integrated QR Scanner Station */}
+        {activeTab === 'scanner' && (
+          <AdminQrScanner
+            onCheckInUpdated={fetchData}
+            onViewPass={(reg) => setViewingPass(reg)}
+            onClose={() => setActiveTab('roster')}
+          />
+        )}
+
         {/* Configuration Manager */}
-        {isEditingConfig && config && (
+        {(activeTab === 'settings' || isEditingConfig) && config && (
           <div className="bg-white rounded border border-slate-300 p-6 shadow-xs">
             <div className="flex items-center justify-between pb-3 border-b border-slate-200 mb-4">
               <div className="flex items-center gap-2">
@@ -387,8 +493,12 @@ export default function AdminDashboardPage() {
                 </h2>
               </div>
               <button
-                onClick={() => setIsEditingConfig(false)}
-                className="text-slate-400 hover:text-slate-700"
+                onClick={() => {
+                  setIsEditingConfig(false);
+                  setActiveTab('roster');
+                }}
+                className="text-slate-400 hover:text-slate-700 cursor-pointer"
+                title="Close Settings"
               >
                 <X className="w-4 h-4" />
               </button>

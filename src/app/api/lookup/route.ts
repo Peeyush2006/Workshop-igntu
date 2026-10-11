@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
-import { findRegistrationById, findRegistrationByEmail } from '@/lib/storage';
+import { findRegistrationAny, saveRegistration } from '@/lib/storage';
+import { generateQrCode } from '@/lib/qr';
 
 export async function GET(request: Request) {
   try {
@@ -8,21 +9,35 @@ export async function GET(request: Request) {
 
     if (!query) {
       return NextResponse.json(
-        { success: false, error: 'Please provide an email or Registration ID' },
+        { success: false, error: 'Please enter your email, Registration ID, phone, or roll number.' },
         { status: 400 }
       );
     }
 
-    let reg = findRegistrationById(query);
-    if (!reg) {
-      reg = findRegistrationByEmail(query);
-    }
+    const reg = findRegistrationAny(query);
 
     if (!reg) {
       return NextResponse.json(
-        { success: false, error: 'No registration found matching the provided details.' },
+        {
+          success: false,
+          error: `No registration found matching "${query}". Please verify your details or register for a free pass.`,
+        },
         { status: 404 }
       );
+    }
+
+    // Ensure QR code is generated if missing
+    if (!reg.qrCodeDataUrl) {
+      const qrPayload = JSON.stringify({
+        id: reg.id,
+        token: reg.verificationToken,
+        name: reg.fullName,
+        role: reg.role,
+        event: 'AI for Viksit Bharat @ 2047',
+        date: '2026-10-14',
+      });
+      reg.qrCodeDataUrl = await generateQrCode(qrPayload);
+      saveRegistration(reg);
     }
 
     return NextResponse.json({ success: true, data: reg });

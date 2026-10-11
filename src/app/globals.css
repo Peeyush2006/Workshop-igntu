@@ -28,14 +28,54 @@ body {
 }
 
 @media print {
+  @page {
+    size: A4 portrait;
+    margin: 10mm;
+  }
+  
+  /* Hide standard page layout and sections */
+  header,
+  nav,
+  footer,
+  #hero,
+  #overview,
+  #speakers,
+  #schedule,
+  #venue,
+  #store,
+  #guidelines,
+  #faq,
   .no-print {
     display: none !important;
   }
+
   .print-only {
     display: block !important;
   }
+
+  /* Neutralize modal overlays so they don't paginate repeatedly */
+  .fixed {
+    position: static !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    max-height: none !important;
+    overflow: visible !important;
+    inset: auto !important;
+    padding: 0 !important;
+  }
+
   body {
-    background: white !important;
-    color: black !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  #digital-pass-card {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    box-shadow: none !important;
+    margin: 0 auto !important;
   }
 }
+

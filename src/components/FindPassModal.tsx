@@ -85,7 +85,7 @@ export default function FindPassModal({ isOpen, onClose }: FindPassModalProps) {
           ) : (
             <form onSubmit={handleLookup} className="space-y-4">
               <p className="text-xs text-slate-600 leading-relaxed">
-                Enter your registered email address or Registration ID (e.g., <code className="font-mono text-slate-900 font-bold">VB2047-1001</code>).
+                Enter your Registration ID (e.g. <code className="font-mono text-slate-900 font-bold">VB2047-1001</code>), registered email address, 10-digit mobile number, or roll number.
               </p>
 
               {error && (
@@ -97,14 +97,14 @@ export default function FindPassModal({ isOpen, onClose }: FindPassModalProps) {
 
               <div>
                 <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-                  Registered Email or Reference ID
+                  Registration ID, Email, Phone, or Roll No.
                 </label>
                 <input
                   type="text"
                   required
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
-                  placeholder="e.g. name@igntu.ac.in or VB2047-..."
+                  placeholder="e.g. VB2047-1001 or email@domain.com or 9876543210"
                   className="w-full px-3 py-2 rounded border border-slate-300 text-slate-900 text-xs focus:outline-none focus:border-slate-800 transition-colors"
                 />
               </div>

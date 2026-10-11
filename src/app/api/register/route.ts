@@ -82,6 +82,18 @@ export async function POST(request: Request) {
     // Check if already registered
     const existing = findRegistrationByEmail(email);
     if (existing) {
+      if (!existing.qrCodeDataUrl) {
+        const qrPayload = JSON.stringify({
+          id: existing.id,
+          token: existing.verificationToken,
+          name: existing.fullName,
+          role: existing.role,
+          event: 'AI for Viksit Bharat @ 2047',
+          date: '2026-10-14',
+        });
+        existing.qrCodeDataUrl = await generateQrCode(qrPayload);
+        saveRegistration(existing);
+      }
       const maxCap = config.maxCapacity || 250;
       const totalReg = existingList.length;
       return NextResponse.json(

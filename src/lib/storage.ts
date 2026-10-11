@@ -124,7 +124,7 @@ export function getRegistrations(): Registration[] {
     if (fs.existsSync(REGISTRATIONS_FILE)) {
       const data = fs.readFileSync(REGISTRATIONS_FILE, 'utf-8');
       const list = JSON.parse(data);
-      if (Array.isArray(list)) {
+      if (Array.isArray(list) && list.length > 0) {
         return list;
       }
     }
@@ -171,6 +171,43 @@ export function findRegistrationByEmail(email: string): Registration | null {
   const list = getRegistrations();
   const normalized = email.trim().toLowerCase();
   return list.find((item) => item.email.toLowerCase() === normalized) || null;
+}
+
+export function findRegistrationAny(query: string): Registration | null {
+  const list = getRegistrations();
+  const raw = query.trim();
+  if (!raw) return null;
+  const lower = raw.toLowerCase();
+  const digits = raw.replace(/\D/g, '');
+
+  return (
+    list.find((item) => {
+      // 1. Exact or normalized ID (e.g. VB2047-1001 or 1001)
+      if (item.id.toLowerCase() === lower) return true;
+      if (lower.length >= 3 && item.id.toLowerCase().includes(lower)) return true;
+      if (digits.length >= 3 && item.id.replace(/\D/g, '').endsWith(digits)) return true;
+
+      // 2. Email match
+      if (item.email.toLowerCase() === lower) return true;
+      if (lower.includes('@') && item.email.toLowerCase().includes(lower)) return true;
+
+      // 3. Full Name match
+      if (item.fullName.toLowerCase() === lower) return true;
+      if (lower.length >= 3 && item.fullName.toLowerCase().includes(lower)) return true;
+
+      // 4. Roll / Employee ID Number match
+      if (item.idNumber.toLowerCase() === lower) return true;
+      if (lower.length >= 3 && item.idNumber.toLowerCase().includes(lower)) return true;
+
+      // 5. Phone number match
+      if (digits.length >= 10 && item.phone.replace(/\D/g, '').includes(digits)) return true;
+
+      // 6. Verification token match
+      if (item.verificationToken.toLowerCase() === lower) return true;
+
+      return false;
+    }) || null
+  );
 }
 
 export function findRegistrationByTokenOrId(identifier: string): Registration | null {
