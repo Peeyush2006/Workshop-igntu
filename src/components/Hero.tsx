@@ -80,18 +80,44 @@ export default function Hero({ config, seats, onOpenRegister }: HeroProps) {
               {/* Bold Event Title Artwork (Matching Builder Pop-Up Typography) */}
               <div className="flex items-end gap-4 mt-2">
                 <div>
-                  {/* Constant Voice 4 GenZ Feature just upside of Viksit Bharat @ 2047 */}
-                  <div className="inline-flex items-center gap-2 mb-2 px-3 h-[28px] rounded-full bg-blue-50/90 border border-blue-200/90 shadow-2xs select-none">
-                    {/* Constant Equalizer Voice Waveform */}
-                    <div className="flex items-center gap-0.5 h-3.5 px-0.5">
-                      <span className="w-0.5 h-2 bg-[#1A73E8] rounded-full" />
-                      <span className="w-0.5 h-3.5 bg-[#EA4335] rounded-full" />
-                      <span className="w-0.5 h-2.5 bg-[#FBBC04] rounded-full" />
-                      <span className="w-0.5 h-3 bg-[#34A853] rounded-full" />
+                  {/* Voice 4 GenZ Feature just upside of Viksit Bharat @ 2047 with GPU transform animation (Zero layout shift) */}
+                  <div className="inline-flex items-center gap-2 mb-2 px-3 h-[28px] max-h-[28px] rounded-full bg-blue-50/90 border border-blue-200/90 shadow-2xs select-none overflow-hidden">
+                    {/* Constant-box Equalizer with GPU-scaleY transform animation */}
+                    <div className="flex items-end gap-[2.5px] h-3.5 w-[16px] overflow-hidden select-none shrink-0 pb-[1px]">
+                      <motion.span
+                        className="w-[2px] h-3 bg-[#1A73E8] rounded-full shrink-0 block"
+                        style={{ transformOrigin: 'bottom' }}
+                        animate={{ scaleY: [0.3, 1.0, 0.5, 0.85, 0.3] }}
+                        transition={{ duration: 1.1, repeat: Infinity, ease: 'easeInOut' }}
+                      />
+                      <motion.span
+                        className="w-[2px] h-3 bg-[#EA4335] rounded-full shrink-0 block"
+                        style={{ transformOrigin: 'bottom' }}
+                        animate={{ scaleY: [0.85, 0.3, 1.0, 0.45, 0.85] }}
+                        transition={{ duration: 0.95, repeat: Infinity, ease: 'easeInOut', delay: 0.15 }}
+                      />
+                      <motion.span
+                        className="w-[2px] h-3 bg-[#FBBC04] rounded-full shrink-0 block"
+                        style={{ transformOrigin: 'bottom' }}
+                        animate={{ scaleY: [0.4, 0.95, 0.35, 0.75, 0.4] }}
+                        transition={{ duration: 1.25, repeat: Infinity, ease: 'easeInOut', delay: 0.3 }}
+                      />
+                      <motion.span
+                        className="w-[2px] h-3 bg-[#34A853] rounded-full shrink-0 block"
+                        style={{ transformOrigin: 'bottom' }}
+                        animate={{ scaleY: [0.95, 0.4, 0.8, 0.25, 0.95] }}
+                        transition={{ duration: 1.05, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }}
+                      />
                     </div>
 
                     <span className="text-xs sm:text-[13px] font-black uppercase tracking-wider text-[#1A73E8] font-sans leading-none">
                       Voice 4 GenZ
+                    </span>
+
+                    {/* Live pulsating indicator dot */}
+                    <span className="relative flex h-1.5 w-1.5 shrink-0 ml-0.5">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#1A73E8]"></span>
                     </span>
                   </div>
 
