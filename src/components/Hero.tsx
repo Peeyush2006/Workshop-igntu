@@ -99,6 +99,49 @@ export default function Hero({ config, seats, onOpenRegister }: HeroProps) {
               {/* Bold Event Title Artwork (Matching Builder Pop-Up Typography) */}
               <div className="flex items-end gap-4 mt-2">
                 <div>
+                  {/* Animated Voice 4 GenZ Feature just upside of Viksit Bharat @ 2047 */}
+                  <motion.div
+                    initial={{ opacity: 0, y: -8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, ease: 'easeOut' }}
+                    className="inline-flex items-center gap-2 mb-2 px-3 py-1 rounded-full bg-gradient-to-r from-blue-50/90 via-indigo-50/70 to-purple-50/90 border border-blue-200/90 shadow-2xs group select-none"
+                  >
+                    {/* Live Equalizer Voice Waveform */}
+                    <div className="flex items-center gap-0.5 h-3.5 px-0.5">
+                      <motion.span
+                        className="w-0.5 bg-[#1A73E8] rounded-full"
+                        animate={{ height: ['4px', '14px', '6px', '16px', '4px'] }}
+                        transition={{ duration: 1.1, repeat: Infinity, ease: 'easeInOut' }}
+                      />
+                      <motion.span
+                        className="w-0.5 bg-[#EA4335] rounded-full"
+                        animate={{ height: ['12px', '4px', '15px', '7px', '12px'] }}
+                        transition={{ duration: 0.9, repeat: Infinity, ease: 'easeInOut', delay: 0.15 }}
+                      />
+                      <motion.span
+                        className="w-0.5 bg-[#FBBC04] rounded-full"
+                        animate={{ height: ['5px', '16px', '5px', '11px', '5px'] }}
+                        transition={{ duration: 1.3, repeat: Infinity, ease: 'easeInOut', delay: 0.3 }}
+                      />
+                      <motion.span
+                        className="w-0.5 bg-[#34A853] rounded-full"
+                        animate={{ height: ['14px', '5px', '12px', '3px', '14px'] }}
+                        transition={{ duration: 1.0, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }}
+                      />
+                    </div>
+
+                    <span className="text-xs sm:text-[13px] font-black uppercase tracking-wider bg-gradient-to-r from-[#1A73E8] via-[#7C3AED] to-[#DB2777] bg-clip-text text-transparent font-sans">
+                      Voice 4 GenZ
+                    </span>
+
+                    <span className="w-1 h-1 rounded-full bg-slate-300" />
+
+                    <span className="text-[10px] sm:text-[11px] font-bold text-slate-600 font-mono tracking-tight flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                      Youth Movement
+                    </span>
+                  </motion.div>
+
                   <h1 className="text-5xl sm:text-6xl md:text-7xl font-black text-slate-950 tracking-tight leading-[0.95] font-sans">
                     Viksit <br />
                     Bharat <br />
