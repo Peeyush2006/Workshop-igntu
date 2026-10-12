@@ -77,25 +77,6 @@ export default function Hero({ config, seats, onOpenRegister }: HeroProps) {
             className="lg:col-span-6 flex flex-col items-center lg:items-start select-none"
           >
             <div className="flex flex-col items-start max-w-md">
-              {/* University & Department Header Badge */}
-              <div className="inline-flex items-center gap-2 sm:gap-2.5 px-3 py-1.5 rounded-full bg-slate-50 border border-slate-200/90 mb-3 shadow-2xs max-w-full">
-                <div className="relative w-5 h-5 sm:w-6 sm:h-6 shrink-0">
-                  <Image
-                    src="/images/igntu-logo.webp"
-                    alt="IGNTU University Crest"
-                    fill
-                    className="object-contain"
-                  />
-                </div>
-                <div className="flex items-center gap-1.5 sm:gap-2 text-xs truncate">
-                  <span className="font-bold text-[#1A73E8] font-mono tracking-tight shrink-0">IGNTU</span>
-                  <span className="text-slate-300">·</span>
-                  <span className="font-semibold text-slate-800 shrink-0">Department of CS</span>
-                  <span className="text-slate-300">·</span>
-                  <span className="text-slate-500 font-medium">Amarkantak</span>
-                </div>
-              </div>
-
               {/* Bold Event Title Artwork (Matching Builder Pop-Up Typography) */}
               <div className="flex items-end gap-4 mt-2">
                 <div>
