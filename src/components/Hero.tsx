@@ -113,12 +113,6 @@ export default function Hero({ config, seats, onOpenRegister }: HeroProps) {
                     <span className="text-xs sm:text-[13px] font-black uppercase tracking-wider text-[#1A73E8] font-sans leading-none">
                       Voice 4 GenZ
                     </span>
-
-                    {/* Live pulsating indicator dot */}
-                    <span className="relative flex h-1.5 w-1.5 shrink-0 ml-0.5">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#1A73E8]"></span>
-                    </span>
                   </div>
 
                   <h1 className="text-5xl sm:text-6xl md:text-7xl font-black text-slate-950 tracking-tight leading-[0.95] font-sans">
