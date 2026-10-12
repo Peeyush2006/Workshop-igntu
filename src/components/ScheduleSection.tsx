@@ -39,7 +39,7 @@ const morningItems: ScheduleItem[] = [
     num: '03',
     time: '10:25–10:45',
     duration: '20 min',
-    activity: 'Dr. Prof. Vikash Singh',
+    activity: 'Prof. Vikash Singh',
     desc: [
       'Head of the Department of Computer Science',
       'Topic: Emerging Technologies and the Role of AI in Viksit Bharat @2047',
