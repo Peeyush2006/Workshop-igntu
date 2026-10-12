@@ -143,7 +143,7 @@ export default function CountdownTimer({
     return (
       <div className="inline-flex items-center gap-2 px-4 py-2 rounded bg-amber-50 border border-amber-300 text-amber-900 text-xs font-bold">
         <span className="w-2 h-2 rounded bg-amber-600" />
-        <span>Workshop in Progress: Prof. Lakshman Honour Auditorium</span>
+        <span>Workshop in Progress: Prof. Laxman Havnoor Auditorium</span>
       </div>
     );
   }

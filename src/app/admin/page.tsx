@@ -412,7 +412,7 @@ export default function AdminDashboardPage() {
                 14 Oct 2026
               </div>
               <div className="text-[11px] text-slate-500 mt-1">
-                Prof. Lakshman Honour Aud.
+                Prof. Laxman Havnoor Aud.
               </div>
             </div>
           </div>

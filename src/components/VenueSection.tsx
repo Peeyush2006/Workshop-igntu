@@ -17,7 +17,7 @@ export default function VenueSection() {
             Event Venue &amp; Directions
           </h2>
           <p className="mt-3 text-base sm:text-lg text-slate-600 font-normal">
-            Join us in the air-conditioned Prof. Lakshman Honour Auditorium on the IGNTU campus in Amarkantak, Madhya Pradesh.
+            Join us in the air-conditioned Prof. Laxman Havnoor Auditorium on the IGNTU campus in Amarkantak, Madhya Pradesh.
           </p>
         </div>
 
@@ -35,7 +35,7 @@ export default function VenueSection() {
                     Official Host Auditorium
                   </span>
                   <h3 className="text-xl sm:text-2xl font-black text-slate-950 tracking-tight">
-                    Prof. Lakshman Honour Auditorium
+                    Prof. Laxman Havnoor Auditorium
                   </h3>
                 </div>
               </div>

@@ -9,7 +9,7 @@ export default function GuidelinesSection() {
     'Official Certificates of Participation are presented at the valedictory session to delegates with verified attendance on 14 October 2026.',
     'Instant Digital Passes with encrypted QR codes are issued upon online registration: present on mobile or paper at the desk.',
     'Participants are encouraged to bring their personal laptops and chargers for hands-on technical architecture sessions.',
-    'Venue: Prof. Lakshman Honour Auditorium, IGNTU Campus, Village Lalpur, Amarkantak, Madhya Pradesh - 484887.',
+    'Venue: Prof. Laxman Havnoor Auditorium, IGNTU Campus, Village Lalpur, Amarkantak, Madhya Pradesh - 484887.',
   ];
 
   return (

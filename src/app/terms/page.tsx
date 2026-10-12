@@ -38,7 +38,7 @@ export default function TermsAndConditionsPage() {
           <div className="mt-4 pt-4 border-t border-slate-100 flex flex-wrap gap-4 text-xs text-slate-500">
             <span>Date of Workshop: 14 October 2026</span>
             <span>|</span>
-            <span>Venue: Prof. Lakshman Honour Auditorium</span>
+            <span>Venue: Prof. Laxman Havnoor Auditorium</span>
           </div>
         </div>
 
@@ -74,7 +74,7 @@ export default function TermsAndConditionsPage() {
             <ul className="list-disc pl-5 space-y-1.5 text-slate-600">
               <li>Each registered participant is issued a unique Digital E-Pass with an encrypted QR code.</li>
               <li>Delegate passes are non-transferable and may not be shared, duplicated, or reassigned.</li>
-              <li>Physical attendance must be verified at the registration desk of Prof. Lakshman Honour Auditorium on 14 October 2026 between 09:00 AM and 09:45 AM using the digital QR scanner.</li>
+              <li>Physical attendance must be verified at the registration desk of Prof. Laxman Havnoor Auditorium on 14 October 2026 between 09:00 AM and 09:45 AM using the digital QR scanner.</li>
             </ul>
           </section>
 

@@ -12,7 +12,7 @@ export const initialEventConfig: EventConfig = {
   startTime: '09:30 AM',
   endTime: '05:30 PM',
   registrationDeadline: '2026-10-13T23:59:59',
-  venue: 'Prof. Lakshman Honour Auditorium',
+  venue: 'Prof. Laxman Havnoor Auditorium',
   venueAddress: 'Indira Gandhi National Tribal University, Lalpur, Amarkantak, Anuppur District, Madhya Pradesh - 484887',
   registrationFee: 'Free',
   maxCapacity: 250,
@@ -33,8 +33,8 @@ export const speakersData: Speaker[] = [
       'Aditi Saraf is a technology enthusiast with a strong foundation in cloud computing, DevOps, and software development. She works across AWS and Azure, with hands-on expertise in Docker, Kubernetes, Terraform, Jenkins, Ansible, Git, and cloud infrastructure.\n\nWith experience in Python, Java, Groovy, SQL, JavaScript, and HTML, Aditi is adaptable to new technologies and focused on building scalable, reliable, and efficient solutions. She brings a problem-solving mindset and a strong willingness to take on new challenges and opportunities.',
     photoUrl: '/images/speakers/aditi-saraf.jpg',
     sessionTitle: 'Scalable Cloud Platforms & Continuous DevOps for Resilient AI Architectures',
-    sessionTime: '10:30 AM - 11:45 AM',
-    sessionType: 'Keynote Address',
+    sessionTime: '1:15 PM – 2:00 PM',
+    sessionType: 'Industry Expert',
     technicalExpertise: [
       {
         category: 'Cloud',
@@ -64,8 +64,8 @@ export const speakersData: Speaker[] = [
       'Shivansh Gupta is a technology enthusiast with over two years of professional experience building, deploying, and optimizing real-world software systems. His expertise spans cloud-native infrastructure, DevOps automation, backend development, and production deployments.\n\nHe works with Docker, Kubernetes, GitLab, Jenkins, Terraform, AWS, Azure, and VPS infrastructure, with hands-on experience deploying production applications using Nginx, Apache, SSL/TLS, and DNS. He also specializes in backend development with Spring Boot and databases including PostgreSQL, MySQL, and MongoDB.\n\nDriven by curiosity and a problem-solving mindset, Shivansh focuses on automation, performance, scalability, and security, leveraging tools such as Vault, MinIO, Prometheus, Grafana, and Bash to build reliable systems.',
     photoUrl: '/images/speakers/shivansh-gupta.jpg',
     sessionTitle: 'Mission-Critical Backend Engineering, Automation & Observability for Nation-Scale Platforms',
-    sessionTime: '02:15 PM - 03:30 PM',
-    sessionType: 'Technical Session',
+    sessionTime: '2:00 PM – 2:45 PM',
+    sessionType: 'Industry Expert',
     technicalExpertise: [
       {
         category: 'Cloud',
@@ -107,8 +107,8 @@ export const speakersData: Speaker[] = [
       'Shivam Patel is a System Engineer at Tata Consultancy Services (TCS) with a Master’s in Computer Applications and hands-on experience in application development and enterprise software engineering. He currently works on microservices-based application development as part of the Accounting Modernization program.\n\nHis technical interests span web and application development, database management, network security, and DevOps practices, with experience working with tools such as Git and Jenkins. He also gained early exposure to Machine Learning Operations (MLOps) through his internship at LinuxWorld Informatics.\n\nWith a strong interest in building reliable applications and continuously expanding his technical expertise, Shivam brings an adaptable and development-focused approach to solving real-world technology problems.',
     photoUrl: '/images/speakers/shivam-patel.jpg',
     sessionTitle: 'Enterprise Microservices Modernization & MLOps for Future-Ready Digital Public Infrastructure',
-    sessionTime: '12:00 PM - 01:15 PM',
-    sessionType: 'Technical Session',
+    sessionTime: '2:45 PM – 3:30 PM',
+    sessionType: 'Industry Expert',
     technicalExpertise: [
       {
         category: 'Enterprise Development',

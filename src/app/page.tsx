@@ -83,7 +83,7 @@ export default function HomePage() {
               Seats are limited in the Auditorium
             </h2>
             <p className="mt-4 text-base sm:text-lg text-slate-400 max-w-xl mx-auto font-normal">
-              Join keynote engineers and fellow researchers at Prof. Lakshman Honour Auditorium, IGNTU Amarkantak on 14 October 2026.
+              Join keynote engineers and fellow researchers at Prof. Laxman Havnoor Auditorium, IGNTU Amarkantak on 14 October 2026.
             </p>
 
             <div className="mt-8 flex justify-center">

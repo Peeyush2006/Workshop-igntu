@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     'Department of Computer Science',
     'Indira Gandhi National Tribal University',
     'Academic Workshop 14 October 2026',
-    'Prof. Lakshman Honour Auditorium',
+    'Prof. Laxman Havnoor Auditorium',
     'Artificial Intelligence India',
     'Aditi Saraf',
     'Shivansh Gupta',

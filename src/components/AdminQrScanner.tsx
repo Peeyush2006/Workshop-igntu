@@ -256,7 +256,7 @@ export default function AdminQrScanner({
               </span>
             </div>
             <p className="text-xs text-slate-500">
-              Scan delegate digital passes for physical verification at Prof. Lakshman Honour Auditorium.
+              Scan delegate digital passes for physical verification at Prof. Laxman Havnoor Auditorium.
             </p>
           </div>
         </div>

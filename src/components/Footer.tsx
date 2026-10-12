@@ -90,7 +90,7 @@ export default function Footer() {
               <div className="flex items-start gap-2">
                 <MapPin className="w-3.5 h-3.5 text-[#1a73e8] shrink-0 mt-0.5" />
                 <span>
-                  Prof. Lakshman Honour Auditorium, IGNTU, Lalpur, Amarkantak, M.P. - 484887
+                  Prof. Laxman Havnoor Auditorium, IGNTU, Lalpur, Amarkantak, M.P. - 484887
                 </span>
               </div>
               <div className="flex items-center gap-2">
@@ -139,7 +139,7 @@ export default function Footer() {
             © 2026 Department of Computer Science, Indira Gandhi National Tribal University. All rights reserved.
           </p>
           <p className="font-mono">
-            14 October 2026 · Prof. Lakshman Honour Auditorium
+            14 October 2026 · Prof. Laxman Havnoor Auditorium
           </p>
         </div>
       </div>

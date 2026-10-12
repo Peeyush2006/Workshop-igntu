@@ -44,7 +44,7 @@ export default function Hero({ config, seats, onOpenRegister }: HeroProps) {
     {
       type: 'meta',
       icon: MapPin,
-      title: 'Prof. Lakshman Honour Auditorium',
+      title: 'Prof. Laxman Havnoor Auditorium',
       subtitle: 'IGNTU Amarkantak',
       accent: 'text-[#EA4335]',
     },
@@ -173,10 +173,10 @@ export default function Hero({ config, seats, onOpenRegister }: HeroProps) {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200/90 border border-slate-200/80 text-slate-800 shadow-2xs transition-all group max-w-full"
-                  title="Open Prof. Lakshman Honour Auditorium on Google Maps"
+                  title="Open Prof. Laxman Havnoor Auditorium on Google Maps"
                 >
                   <MapPin className="w-3.5 h-3.5 text-[#EA4335] shrink-0 group-hover:scale-110 transition-transform" />
-                  <span className="font-semibold truncate sm:whitespace-normal">Prof. Lakshman Honour Auditorium</span>
+                  <span className="font-semibold truncate sm:whitespace-normal">Prof. Laxman Havnoor Auditorium</span>
                   <ExternalLink className="w-3 h-3 text-slate-400 group-hover:text-[#1A73E8] shrink-0 ml-0.5" />
                 </a>
               </div>

@@ -79,7 +79,7 @@ export default function PrivacyPolicyPage() {
             <p>Data collected is strictly used for legitimate academic administration, including:</p>
             <ul className="list-disc pl-5 space-y-1.5 text-slate-600">
               <li>Issuing individualized digital delegate passes with encrypted verification tokens.</li>
-              <li>Verifying physical attendance at the registration desk of Prof. Lakshman Honour Auditorium on 14 October 2026.</li>
+              <li>Verifying physical attendance at the registration desk of Prof. Laxman Havnoor Auditorium on 14 October 2026.</li>
               <li>Printing official Certificates of Participation.</li>
               <li>Communicating logistical notices, session schedule updates, or emergency announcements.</li>
               <li>Compiling non-personally identifiable statistical summaries for academic accreditation and university reporting.</li>

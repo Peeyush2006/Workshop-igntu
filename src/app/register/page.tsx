@@ -102,7 +102,7 @@ export default function RegisterPage() {
                 Department of Computer Science | Indira Gandhi National Tribal University, Amarkantak
               </p>
               <div className="mt-2 text-xs font-bold text-slate-900">
-                14 October 2026 | Prof. Lakshman Honour Auditorium
+                14 October 2026 | Prof. Laxman Havnoor Auditorium
               </div>
             </div>
 
